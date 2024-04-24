@@ -14,18 +14,19 @@ import onnxruntime as ort
 from PIL import Image
 from pathlib import Path
 from collections import OrderedDict,namedtuple
+import tensorflow as tf
 
 providers = ['AzureExecutionProvider', 'CPUExecutionProvider'] if cuda else ['CPUExecutionProvider']
 session = ort.InferenceSession(w, providers=providers)
 
-tf.compat.disable_v2_behavior()
-with tf.compat.Session() as sess:
-    x = tf.compat.placeholder(tf.float32, [2])
-    x2 = tf.square(x)
-    print(sess.run(x2, feed_dict={x: [2, 3]}))
-    # [4. 9.]
+# #tf.compat.disable_v2_behavior()
+# with tf.compat.Session() as sess:
+#     x = tf.compat.placeholder(tf.float32, [2])
+#     x2 = tf.square(x)
+#     print(sess.run(x2, feed_dict={x: [2, 3]}))
+#     # [4. 9.]
     
-print("00000")
+# print("00000")
 
 def letterbox(im, new_shape=(640, 640), color=(114, 114, 114), auto=True, scaleup=True, stride=32):
     # Resize and pad image while meeting stride-multiple constraints
